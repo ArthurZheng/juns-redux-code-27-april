@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import TodoForm from './todo_form';
-import { addTodo } from '../actions/index';
+import { addTodo, deleteTodo } from '../actions/index';
 
 const Todos = ({todos, dispatch}) => (
     <div className='container'>
@@ -15,10 +15,14 @@ const Todos = ({todos, dispatch}) => (
         }
       }} />
       <ul>
-        {todos.map((todo) => (
-          <li key={todo}>{todo}</li>)
+        {todos.map((todo, index) =>
+          (
+            <li key={todo.index}>
+              {todo} &nbsp;
+              <button onClick={ e => {dispatch(deleteTodo(index))}}>DEL</button>
+            </li>
           )
-        }
+        )}
       </ul>
   </div>
 )
